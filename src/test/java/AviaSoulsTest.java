@@ -13,8 +13,7 @@ public class AviaSoulsTest {
     Ticket ticket8 = new Ticket("Moscow", "London", 17000, 18, 22);
     Ticket ticket9 = new Ticket("London", "Moscow", 14000, 18, 22);
 
-    @Test
-    public void shouldSearchIfSeveralResults() {
+    public AviaSouls addTicketManagerWithTestDate() {
         AviaSouls aviaSouls = new AviaSouls();
         aviaSouls.add(ticket1);
         aviaSouls.add(ticket2);
@@ -25,6 +24,12 @@ public class AviaSoulsTest {
         aviaSouls.add(ticket7);
         aviaSouls.add(ticket8);
         aviaSouls.add(ticket9);
+        return aviaSouls;
+    }
+
+    @Test
+    public void shouldSearchIfSeveralResults() {
+        AviaSouls aviaSouls = addTicketManagerWithTestDate();
 
         Ticket[] expected = {ticket6, ticket4, ticket3, ticket1, ticket7, ticket8};
         Ticket[] actual = aviaSouls.search("Moscow", "London");
@@ -33,16 +38,7 @@ public class AviaSoulsTest {
 
     @Test
     public void shouldSearchIfZeroResults() {
-        AviaSouls aviaSouls = new AviaSouls();
-        aviaSouls.add(ticket1);
-        aviaSouls.add(ticket2);
-        aviaSouls.add(ticket3);
-        aviaSouls.add(ticket4);
-        aviaSouls.add(ticket5);
-        aviaSouls.add(ticket6);
-        aviaSouls.add(ticket7);
-        aviaSouls.add(ticket8);
-        aviaSouls.add(ticket9);
+        AviaSouls aviaSouls = addTicketManagerWithTestDate();
 
         Ticket[] expected = {};
         Ticket[] actual = aviaSouls.search("Paris", "London");
@@ -51,16 +47,7 @@ public class AviaSoulsTest {
 
     @Test
     public void shouldSearchAndSortByIfSeveralResults() {
-        AviaSouls aviaSouls = new AviaSouls();
-        aviaSouls.add(ticket1);
-        aviaSouls.add(ticket2);
-        aviaSouls.add(ticket3);
-        aviaSouls.add(ticket4);
-        aviaSouls.add(ticket5);
-        aviaSouls.add(ticket6);
-        aviaSouls.add(ticket7);
-        aviaSouls.add(ticket8);
-        aviaSouls.add(ticket9);
+        AviaSouls aviaSouls = addTicketManagerWithTestDate();
 
         Ticket[] expected = {ticket1, ticket3, ticket7, ticket8, ticket4, ticket6};
         Ticket[] actual = aviaSouls.searchAndSortBy("Moscow", "London", new TicketTimeComparator());
@@ -69,16 +56,7 @@ public class AviaSoulsTest {
 
     @Test
     public void shouldSearchAndSortByIfZeroResults() {
-        AviaSouls aviaSouls = new AviaSouls();
-        aviaSouls.add(ticket1);
-        aviaSouls.add(ticket2);
-        aviaSouls.add(ticket3);
-        aviaSouls.add(ticket4);
-        aviaSouls.add(ticket5);
-        aviaSouls.add(ticket6);
-        aviaSouls.add(ticket7);
-        aviaSouls.add(ticket8);
-        aviaSouls.add(ticket9);
+        AviaSouls aviaSouls = addTicketManagerWithTestDate();
 
         Ticket[] expected = {};
         Ticket[] actual = aviaSouls.searchAndSortBy("Mexico", "London", new TicketTimeComparator());
